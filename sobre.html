@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nós - EX Devedor</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Specific page overrides to avoid breaking other pages */
+        body.page-about-pixel {
+            font-family: 'Montserrat', 'Lato', sans-serif;
+            background-color: white;
+            color: #555;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 1. Header Transparent */
+        .mag-header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            box-sizing: border-box;
+        }
+        .mag-header-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            font-family: 'Lato', sans-serif;
+        }
+        .mag-header-logo img {
+            height: 40px;
+            filter: brightness(0) invert(1);
+        }
+        .mag-nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+        }
+        .mag-nav a {
+            text-decoration: none;
+            color: white;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: opacity 0.3s;
+        }
+        .mag-nav a:hover {
+            opacity: 0.8;
+        }
+        .mag-nav a.active {
+            color: #d13d4b; /* Exact red/pink from the model */
+        }
+
+        /* 2. Hero Section */
+        .mag-hero {
+            position: relative;
+            width: 100%;
+            height: 412px;
+            background: url('img/fundadores.jpg') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding-top: 50px;
+        }
+        .mag-hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(30, 36, 48, 0.75); /* Dark bluish tint */
+            z-index: 1;
+        }
+        .mag-hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        .mag-hero-sub {
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin-bottom: 0.2rem;
+            letter-spacing: 1px;
+        }
+        .mag-hero-title {
+            font-size: 4.5rem;
+            font-weight: 900;
+            margin: 0;
+            letter-spacing: -1px;
+        }
+
+        /* 3. Main Content Container */
+        .mag-main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4rem;
+        }
+        .mag-left {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+            min-height: 450px;
+        }
+        .mag-img-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 75%;
+            height: 350px;
+            object-fit: cover;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .mag-img-fg {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 55%;
+            height: 250px;
+            object-fit: cover;
+            border: 12px solid white;
+            box-shadow: -5px 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .mag-right {
+            flex: 1.2;
+            min-width: 300px;
+            padding-top: 1.5rem;
+        }
+        .mag-right-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #222;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+        }
+        .mag-divider {
+            width: 40px;
+            height: 2px;
+            background-color: #d1b499; /* Light tan/gold */
+            margin-bottom: 2rem;
+        }
+        .mag-p {
+            font-size: 0.95rem;
+            color: #777;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+        }
+        .mag-quote {
+            font-size: 1.15rem;
+            font-weight: 800;
+            font-style: italic;
+            color: #222;
+            margin: 2rem 0;
+        }
+
+        /* 4. Logos Section */
+        .mag-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 4rem;
+            padding: 2rem 2rem 6rem;
+            flex-wrap: wrap;
+        }
+        .mag-logo-item {
+            opacity: 0.2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-weight: 900;
+            font-size: 1.2rem;
+            color: #000;
+            letter-spacing: 2px;
+        }
+        .mag-logo-item i {
+            margin-bottom: 0.5rem;
+        }
+
+        /* 5. Footer */
+        .mag-footer {
+            background-color: #383838;
+            color: #ccc;
+            text-align: center;
+        }
+        .mag-footer-top {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+            gap: 2rem;
+        }
+        .mag-footer-col {
+            flex: 1;
+            min-width: 200px;
+        }
+        .mag-footer-title {
+            color: #d1b499;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+        }
+        .mag-footer-p {
+            font-size: 0.85rem;
+            line-height: 1.8;
+            margin: 0;
+        }
+        .mag-socials {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        .mag-social-icon {
+            width: 35px;
+            height: 35px;
+            background-color: white;
+            color: #383838;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+        .mag-footer-bottom {
+            background-color: #2d2d2d;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            font-size: 0.8rem;
+            color: #999;
+        }
+        .mag-footer-nav {
+            display: flex;
+            gap: 1.5rem;
+        }
+        .mag-footer-nav a {
+            color: #999;
+            text-decoration: none;
+        }
+
+        @media (max-width: 900px) {
+            .mag-main {
+                flex-direction: column;
+            }
+            .mag-left {
+                width: 100%;
+            }
+            .mag-img-bg {
+                width: 80%;
+            }
+            .mag-img-fg {
+                width: 70%;
+            }
+            .mag-nav { display: none; }
+            .mag-footer-bottom { justify-content: center; gap: 1rem; }
+        }
+    </style>
+</head>
+<body class="page-about-pixel">
+
+    <!-- 1. Header Transparent -->
+        <!-- Header / Navigation -->
+    <header class="header" id="main-header">
+        <div class="container header-container">
+            <a href="index.html" class="logo" id="header-logo">
+                <img src="img/logo.png" alt="EX Devedor Logo">
+                EX<span>Devedor</span>
+            </a>
+            
+            <nav>
+                <ul class="nav-menu" id="nav-menu-list">
+                    <li><a href="index.html" class="nav-link" id="nav-home">Home</a></li>
+                    <li><a href="nosso-metodo.html" class="nav-link">Nosso Método</a></li>
+                    <li><a href="nosso-trabalho.html" class="nav-link">Nosso Trabalho</a></li>
+                    <li><a href="sobre.html" class="nav-link active" id="nav-about">Sobre Nós</a></li>
+                    <li><a href="simulador.html" class="nav-link" id="nav-simulator">Simulador</a></li>
+                    <li><a href="contato.html" class="nav-link" id="nav-contact">Contato</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions"></div>
+            
+            <button class="hamburger" id="menu-toggle-btn" aria-label="Abrir Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- 2. Hero Section -->
+    <section class="mag-hero" style="padding-top: calc(var(--header-height, 80px) + 20px); margin-top: var(--header-height, 80px);">
+        <div class="mag-hero-content">
+            <div class="mag-hero-sub">Conheça Mais</div>
+            <h1 class="mag-hero-title">Sobre Nós</h1>
+        </div>
+    </section>
+
+    <!-- 3. Main Content -->
+    <section class="mag-main">
+        <div class="mag-left">
+            <img src="img/hero_financial_freedom.png" alt="Img 1" class="mag-img-bg">
+            <img src="img/fundadores.jpg" alt="Img 2" class="mag-img-fg">
+        </div>
+        <div class="mag-right">
+            <h2 class="mag-right-title">Trabalhando Desde 2023</h2>
+            <div class="mag-divider"></div>
+            
+            <p class="mag-p">
+                No <strong>Ex Devedor</strong> acreditamos que organização financeira vai muito além de planilhas ou renegociação de dívidas. Criamos um ecossistema que combina inteligência artificial, educação financeira comportamental, mentorias e treinamentos para transformar hábitos e gerar resultados duradouros.
+            </p>
+            
+            <div class="mag-quote">
+                Porque sair das dívidas é importante. Mas permanecer organizado é o que muda vidas.
+            </div>
+            
+            <p class="mag-p">
+                Ajudamos pessoas e organizações a desenvolver uma relação mais saudável com o dinheiro por meio de inteligência artificial, educação financeira e acompanhamento especializado. TECNOLOGIA. EDUCAÇÃO. COMPORTAMENTO. TRANSFORMAÇÃO.
+            </p>
+        </div>
+    </section>
+
+    
+
+    <!-- 5. Footer -->
+<div class="stack-section stack-section--navy" id="stack-footer">
+<footer class="footer" id="main-footer" style="background: transparent;">
+    <div class="container footer-grid">
+        <div class="footer-col">
+            <a href="index.html" class="logo" id="footer-logo" style="margin-bottom: 1.5rem;">
+                <img src="img/logo.png" alt="EX Devedor Logo">
+                EX<span>Devedor</span>
+            </a>
+            <p style="text-align: justify; margin-top: 1rem;">
+                Ajudamos cidadãos a saírem do ciclo de inadimplência, negociando dívidas com descontos justos e recuperando o acesso a crédito de forma segura e transparente.
+            </p>
+        </div>
+        
+        <div class="footer-col">
+            <h4>Navegação</h4>
+                                            <ul class="footer-links">
+                    <li><a href="index.html" id="footer-link-home">Home</a></li>
+                    <li><a href="nosso-metodo.html" id="footer-link-metodo">Nosso Método</a></li>
+                    <li><a href="nosso-trabalho.html" id="footer-link-trabalho">Nosso Trabalho</a></li>
+                    <li><a href="sobre.html" id="footer-link-about">Sobre Nós</a></li>
+                    <li><a href="simulador.html" class="nav-link" id="nav-simulator">Simulador</a></li>
+                <li><a href="contato.html" id="footer-link-contact">Contato</a></li>
+                </ul>
+        </div>
+        
+        <div class="footer-col">
+            <h4>Contato</h4>
+            <ul class="footer-links" style="color: rgba(255, 255, 255, 0.8);">
+                <li style="display: flex; gap: 0.5rem; align-items: flex-start; margin-bottom: 0.75rem; font-size: 0.9rem;">
+                    <i data-lucide="mail" size="16" style="color: var(--accent-orange); margin-top: 0.2rem; flex-shrink: 0;"></i>
+                    contato@exdevedor.com.br
+                </li>
+                <li style="display: flex; gap: 0.5rem; align-items: flex-start; margin-bottom: 0.75rem; font-size: 0.9rem;">
+                    <i data-lucide="phone" size="16" style="color: var(--accent-orange); margin-top: 0.2rem; flex-shrink: 0;"></i>
+                    61 98182-0360
+                </li>
+                <li style="display: flex; gap: 0.5rem; align-items: flex-start; font-size: 0.9rem; line-height: 1.4;">
+                    <i data-lucide="map-pin" size="16" style="color: var(--accent-orange); margin-top: 0.2rem; flex-shrink: 0;"></i>
+                    Instituto SESI SENAI de Tecnologias Educacionais, Setor Bancário Norte - Brasilia DF
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="container footer-bottom">
+        <p style="text-align: justify;">&copy; 2026 EX Devedor. Todos os direitos reservados. Este site é meramente informativo e de simulação.</p>
+        <p style="text-align: justify;">Desenvolvido com carinho para sua liberdade financeira.</p>
+    </div>
+</footer>
+</div><!-- /.stack-section#stack-footer -->
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

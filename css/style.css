@@ -1,0 +1,472 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Outfit:wght@500;700;800&display=swap');
+
+/* CSS Variables for Official EX Devedor Identity */
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #ffffff;
+  --bg-panel: #E1E2E5; /* Cinza oficial */
+  --bg-panel-light: #f1f3f5;
+  
+  --text-primary: #061A35; /* Azul oficial */
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --text-light: #ffffff;
+  
+  --accent-orange: #DFA83F; /* Laranja oficial */
+  --accent-orange-hover: #c99330;
+  --accent-yellow: #FCCF86; /* Amarelo oficial */
+  
+  --brand-navy: #061A35; /* Azul oficial */
+  --border-color: #cbd5e1;
+  --border-light: #e2e8f0;
+  
+  --shadow-sm: 0 1px 3px rgba(6, 26, 53, 0.05);
+  --shadow-md: 0 4px 20px -2px rgba(6, 26, 53, 0.08);
+  --shadow-lg: 0 20px 40px -4px rgba(6, 26, 53, 0.12);
+  
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  --max-width: 1100px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Lato', sans-serif;
+  font-weight: 900;
+  color: var(--text-primary);
+}
+
+h1 {
+  font-size: 3.5rem;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+h2 {
+  font-size: 2.25rem;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+
+p {
+  color: var(--text-secondary);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+/* Container */
+.container {
+  width: 92%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.section {
+  padding: 5rem 0;
+}
+
+/* Header & Navigation */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-light);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Transparent header over full-screen hero */
+.header--transparent {
+  background-color: transparent;
+  backdrop-filter: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.header--transparent .nav-link {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.header--transparent .nav-link:hover,
+.header--transparent .nav-link.active {
+  color: var(--accent-yellow);
+}
+
+.header--transparent .logo {
+  color: #ffffff;
+}
+
+.header--transparent .logo span {
+  color: var(--accent-yellow);
+}
+
+.header--transparent .hamburger span {
+  background-color: #ffffff;
+}
+
+.header--transparent #nav-cta-btn {
+  background-color: var(--accent-orange);
+  color: #ffffff;
+}
+
+.header--transparent .search-bar {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.header--transparent .search-bar input {
+  color: #ffffff;
+}
+
+.header--transparent .search-bar input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.header--transparent .search-bar i {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Scrolled state: becomes solid white */
+.header.scrolled {
+  background-color: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-light);
+  box-shadow: var(--shadow-sm);
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+}
+
+.logo {
+  font-family: 'Lato', sans-serif;
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: var(--brand-navy);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.logo img {
+  height: 42px;
+  width: 42px;
+  border-radius: 50%;
+  box-shadow: var(--shadow-sm);
+  border: 2px solid var(--accent-yellow);
+}
+
+.logo span {
+  color: var(--accent-orange);
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 2rem;
+}
+
+.nav-link {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.nav-link:hover, .nav-link.active {
+  color: var(--accent-orange);
+}
+
+/* Header Actions */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Search Bar in Header */
+.search-bar {
+  display: flex;
+  align-items: center;
+  background-color: var(--bg-panel-light);
+  border: 1px solid var(--border-light);
+  border-radius: 50px;
+  padding: 0.4rem 1rem;
+  width: 250px;
+}
+
+.search-bar input {
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  width: 100%;
+  outline: none;
+}
+
+.search-bar input::placeholder {
+  color: var(--text-muted);
+}
+
+.search-bar i {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 1.35rem;
+  border-radius: 50px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border: 1px solid transparent;
+  gap: 0.5rem;
+}
+
+.btn-primary {
+  background-color: var(--brand-navy);
+  color: var(--text-light);
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-orange);
+  transform: translateY(-1px);
+}
+
+.btn-accent {
+  background-color: var(--accent-orange);
+  color: var(--text-light);
+}
+
+.btn-accent:hover {
+  background-color: var(--accent-orange-hover);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  border-color: var(--accent-orange);
+  color: var(--accent-orange);
+}
+
+.btn-secondary:hover {
+  background-color: var(--accent-orange);
+  color: var(--text-light);
+  transform: translateY(-1px);
+}
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 22px;
+  height: 16px;
+}
+
+.hamburger span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background-color: var(--text-primary);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+
+
+
+/* =========================================
+   NEW ABOUT US MAGAZINE LAYOUT
+   ========================================= */
+.about-mag-page {
+    background-color: white;
+}
+
+/* Hero Dark Section */
+.about-mag-hero {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+    min-height: 400px;
+    background-image: url('../img/fundadores.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    padding-top: var(--header-height);
+}
+.about-mag-hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 1;
+}
+.about-mag-hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 1rem;
+}
+.about-mag-hero-sub {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+}
+.about-mag-hero-title {
+    font-size: 4rem;
+    font-weight: 900;
+    font-family: 'Lato', sans-serif;
+    margin: 0;
+}
+
+/* Two Column Layout */
+.about-mag-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+/* Left Column: Image Collage */
+.about-mag-images {
+    width: 50%;
+    position: relative;
+    min-height: 500px;
+}
+.about-mag-img-main {
+    width: 70%;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+.about-mag-img-overlay {
+    width: 70%;
+    height: auto;
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    border: 8px solid white;
+}
+
+/* Right Column: Text Content */
+.about-mag-text {
+    width: 50%;
+    padding-left: 4rem;
+    padding-top: 1rem;
+}
+.about-mag-headline {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--brand-navy);
+    font-family: 'Lato', sans-serif;
+    margin-bottom: 1.2rem;
+    line-height: 1.2;
+}
+.about-mag-divider {
+    width: 50px;
+    height: 4px;
+    background-color: var(--accent-orange);
+    margin-bottom: 2rem;
+}
+.about-mag-paragraph {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    text-align: justify;
+}
+.about-mag-quote {
+    font-size: 1.2rem;
+    font-weight: 700;
+    font-style: italic;
+    color: var(--brand-navy);
+    margin: 2.5rem 0;
+    border-left: 4px solid var(--accent-orange);
+    padding-left: 1.5rem;
+}
+.about-mag-footer {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-top: 2rem;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .about-mag-images {
+        width: 100%;
+        min-height: 400px;
+        margin-bottom: 3rem;
+    }
+    .about-mag-text {
+        width: 100%;
+        padding-left: 0;
+    }
+    .about-mag-img-main {
+        width: 80%;
+    }
+    .about-mag-img-overlay {
+        width: 75%;
+        bottom: 0;
+        right: 0;
+    }
+}
+@media (max-width: 768px) {
+    .about-mag-hero-title {
+        font-size: 3rem;
+    }
+}

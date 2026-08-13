@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Dívidas - EX Devedor</title>
+    <meta name="description" content="Simule descontos na renegociação de suas dívidas bancárias e de cartão de crédito. Planeje sua poupança e livre-se dos juros.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <link rel="apple-touch-icon" href="img/logo.png">
+    
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+<!-- Header / Navigation -->
+<header class="header" id="main-header">
+    <div class="container header-container">
+        <a href="index.html" class="logo" id="header-logo">
+            <img src="img/logo.png" alt="EX Devedor Logo">
+            EX<span>Devedor</span>
+        </a>
+        
+        <nav>
+            <ul class="nav-menu" id="nav-menu-list">
+                <li><a href="index.html" class="nav-link" id="nav-home">Home</a></li>
+                <li><a href="nosso-metodo.html" class="nav-link">Nosso Método</a></li>
+                <li><a href="nosso-trabalho.html" class="nav-link">Nosso Trabalho</a></li>
+                <li><a href="sobre.html" class="nav-link" id="nav-about">Sobre Nós</a></li>
+                <li><a href="simulador.html" class="nav-link active" id="nav-simulator">Simulador</a></li>
+                <li><a href="contato.html" class="nav-link" id="nav-contact">Contato</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions"></div>
+        
+        <button class="hamburger" id="menu-toggle-btn" aria-label="Abrir Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+</header>
+
+<main class="container">
+    
+    <!-- Title banner -->
+    <section class="section" id="simulator-hero" style="padding-top: 5rem; padding-bottom: 2rem;">
+        <div class="flex-center" style="flex-direction: column; text-align: center; max-width: 800px; margin: 0 auto;">
+            <div class="image-card-badge" style="align-self: center; margin-bottom: 1.5rem; background-color: var(--bg-panel);">Simulador Financeiro</div>
+            <h1 style="font-size: 3.5rem; line-height: 1.1; margin-bottom: 1.5rem;">Calcule a projeção de <span>desconto</span></h1>
+            <p style="font-size: 1.1rem; color: var(--text-secondary); max-width: 600px;">
+                Mova as barras abaixo de acordo com a sua realidade e veja uma estimativa média de quitação e o tempo necessário para economizar o valor.
+            </p>
+        </div>
+    </section>
+
+    <!-- Simulator Form and Results Card -->
+    <section class="section" id="simulator-content" style="padding-top: 0;">
+        <div class="simulator-wrapper">
+            <div class="card" id="simulator-card" style="box-shadow: var(--shadow-lg); background-color: var(--bg-secondary); border: 1px solid var(--border-light); border-radius: 24px; padding: 3rem;">
+                <form id="sim-form" onsubmit="event.preventDefault();">
+                    
+                    <!-- Input 1: Original Debt Value -->
+                    <div class="form-group">
+                        <label for="debt-amount-slider">
+                            Valor total aproximado da dívida
+                            <span id="debt-amount-label">R$ 10.000</span>
+                        </label>
+                        <input type="range" class="range-slider" id="debt-amount-slider" name="debt-amount" min="500" max="100000" step="500" value="10000">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-muted);">
+                            <span>R$ 500</span>
+                            <span>R$ 50.000</span>
+                            <span>R$ 100.000</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Input 2: Time of delay -->
+                    <div class="form-group">
+                        <label for="debt-delay-slider">
+                            Tempo de atraso da dívida
+                            <span id="debt-delay-label">12 meses (1 ano)</span>
+                        </label>
+                        <input type="range" class="range-slider" id="debt-delay-slider" name="debt-delay" min="1" max="60" step="1" value="12">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-muted);">
+                            <span>Recente (1 mês)</span>
+                            <span>Médio (12 meses)</span>
+                            <span>Antigo (5 anos ou +)</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Input 3: Monthly savings capability -->
+                    <div class="form-group">
+                        <label for="monthly-pay-slider">
+                            Quanto consegue guardar por mês para quitar?
+                            <span id="monthly-pay-label">R$ 300</span>
+                        </label>
+                        <input type="range" class="range-slider" id="monthly-pay-slider" name="monthly-pay" min="100" max="5000" step="50" value="300">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-muted);">
+                            <span>R$ 100/mês</span>
+                            <span>R$ 2.500/mês</span>
+                            <span>R$ 5.000/mês</span>
+                        </div>
+                    </div>
+                    
+                </form>
+                
+                <!-- Dynamic Results Box -->
+                <div class="results-card" id="results-box" style="margin-top: 3rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem; margin-bottom: 1.5rem;">
+                        <h3 style="display: flex; align-items: center; gap: 0.5rem; font-size: 1.25rem;">
+                            <i data-lucide="line-chart" style="color: var(--brand-navy);"></i>
+                            Resultado da Projeção
+                        </h3>
+                        <span class="image-card-badge" id="discount-badge" style="background-color: var(--accent-orange); color: white;">60% OFF</span>
+                    </div>
+                    
+                    <div class="results-grid">
+                        <div>
+                            <p style="font-size: 0.85rem; margin-bottom: 0.25rem; color: var(--text-secondary);">Estimativa de Quitação à Vista</p>
+                            <div class="result-val" id="result-pay-value">R$ 4.000</div>
+                            <p style="font-size: 0.75rem; color: var(--text-secondary);" id="original-vs-deal">Você economiza R$ 6.000</p>
+                        </div>
+                        
+                        <div>
+                            <p style="font-size: 0.85rem; margin-bottom: 0.25rem; color: var(--text-secondary);">Tempo para Juntar o Dinheiro</p>
+                            <div class="result-val blue" id="result-months-needed">14 meses</div>
+                            <p style="font-size: 0.75rem; color: var(--text-muted);">Guardando o valor mensal</p>
+                        </div>
+                        
+                        <div>
+                            <p style="font-size: 0.85rem; margin-bottom: 0.25rem; color: var(--text-secondary);">Score de Crédito Futuro</p>
+                            <div class="result-val" id="result-score-project" style="color: var(--accent-orange);">Aumento Alto</div>
+                            <p style="font-size: 0.75rem; color: var(--text-muted);">Após a liquidação da dívida</p>
+                        </div>
+                    </div>
+                    
+                    <div class="results-footer" style="border-top: 1px solid var(--border-light); padding-top: 1.5rem; margin-top: 2rem;">
+                        <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.5;">
+                            *Esta simulação é baseada na média histórica de descontos para liquidação direta de dívidas em bureaus e instituições. O valor real depende de políticas internas do banco credor e tipo de contrato.
+                        </p>
+                        <a href="contato.html" class="btn btn-primary" id="cta-negotiate-lead" style="border-radius: 12px; width: 100%;">
+                            <i data-lucide="mail"></i> Receber Plano de Ação por E-mail
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="footer" id="main-footer">
+    <div class="container footer-grid">
+        <div class="footer-col">
+            <a href="index.html" class="logo" id="footer-logo" style="margin-bottom: 1.5rem;">
+                <img src="img/logo.png" alt="EX Devedor Logo">
+                EX<span>Devedor</span>
+            </a>
+            <p style="margin-top: 1rem;">
+                Ajudamos cidadãos a saírem do ciclo de inadimplência, negociando dívidas com descontos justos e recuperando o acesso a crédito de forma segura e transparente.
+            </p>
+        </div>
+        
+        <div class="footer-col">
+            <h4>Navegação</h4>
+                                            <ul class="footer-links">
+                    <li><a href="index.html" id="footer-link-home">Home</a></li>
+                    <li><a href="nosso-metodo.html" id="footer-link-metodo">Nosso Método</a></li>
+                    <li><a href="nosso-trabalho.html" id="footer-link-trabalho">Nosso Trabalho</a></li>
+                    <li><a href="sobre.html" id="footer-link-about">Sobre Nós</a></li>
+                    <li><a href="simulador.html" class="nav-link active" id="nav-simulator">Simulador</a></li>
+                <li><a href="contato.html" id="footer-link-contact">Contato</a></li>
+                </ul>
+        </div>
+        
+        <div class="footer-col">
+            <h4>Contato</h4>
+            <ul class="footer-links" style="color: rgba(255, 255, 255, 0.8);">
+                <li style="display: flex; gap: 0.5rem; align-items: flex-start; margin-bottom: 0.75rem; font-size: 0.9rem;">
+                    <i data-lucide="mail" size="16" style="color: var(--accent-orange); margin-top: 0.2rem; flex-shrink: 0;"></i>
+                    contato@exdevedor.com.br
+                </li>
+                <li style="display: flex; gap: 0.5rem; align-items: flex-start; margin-bottom: 0.75rem; font-size: 0.9rem;">
+                    <i data-lucide="phone" size="16" style="color: var(--accent-orange); margin-top: 0.2rem; flex-shrink: 0;"></i>
+                    61 98182-0360
+                </li>
+                <li style="display: flex; gap: 0.5rem; align-items: flex-start; font-size: 0.9rem; line-height: 1.4;">
+                    <i data-lucide="map-pin" size="16" style="color: var(--accent-orange); margin-top: 0.2rem; flex-shrink: 0;"></i>
+                    Instituto SESI SENAI de Tecnologias Educacionais, Setor Bancário Norte - Brasília DF
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="container footer-bottom">
+        <p>&copy; 2026 EX Devedor. Todos os direitos reservados. Este site é meramente informativo e de simulação.</p>
+        <p>Desenvolvido com carinho para sua liberdade financeira.</p>
+    </div>
+</footer>
+
+<!-- Main Scripts -->
+<script src="js/main.js"></script>
+<script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+</script>
+</body>
+</html>
